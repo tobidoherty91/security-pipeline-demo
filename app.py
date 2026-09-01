@@ -6,7 +6,7 @@ from flask import Flask, request, render_template, redirect, session, send_from_
 app = Flask(__name__)
 
 # FIXED: Use environment variable for secret, fallback to random for development
-app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24))
+app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24)) # nosec B105
 
 # Configuration
 UPLOAD_FOLDER = 'uploads'
@@ -160,4 +160,4 @@ def logout():
 # ------------------- MAIN -------------------
 if __name__ == '__main__':
     init_db()
-    app.run(debug=False, host='0.0.0.0', port=5000)  # Set debug=False for production
+    app.run(debug=False, host='127.0.0.1', port=5000)  # Set debug=False for production
